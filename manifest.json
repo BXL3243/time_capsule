@@ -1,0 +1,15 @@
+{
+  "short_name": "Crypto Capsule",
+  "name": "Crypto Capsule is your decentralised trust fund, a timelock contract that can be used as a term deposit to lock your tokens.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "",
+  "display": "standalone",
+  "theme_color": "#5268A1",
+  "background_color": "#F8F2F2"
+}
