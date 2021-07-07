@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/CryptoCapsule.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> CryptoCapsule.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>77/77</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.15% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>50/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>77/77</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">103×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+&nbsp;
+import "./utils/EnumerableSet.sol";
+import "./utils/Ownable.sol";
+import "./token/ERC20.sol";
+import "./token/SafeERC20.sol";
+&nbsp;
+contract CryptoCapsule is Ownable{
+    using EnumerableSet for EnumerableSet.UintSet;
+    using SafeERC20 for ERC20;
+&nbsp;
+    // Capsule Data
+    struct Capsule {
+        uint256 id;
+        address grantor;
+        address payable beneficiary;
+        uint48 distributionDate;
+        uint256 periodSize;
+        uint256 periodCount;
+        uint256 claimedPeriods;
+        uint48 createdDate;
+        bool empty;
+        uint256 value;
+        address[] tokens;
+        uint256[] amounts;
+        bool addingAssetsAllowed;
+    }
+&nbsp;
+    Capsule[] capsules;
+    mapping (address =&gt; EnumerableSet.UintSet) private sent;
+    mapping (address =&gt; EnumerableSet.UintSet) private received;
+&nbsp;
+&nbsp;
+    // Constructor 
+    constructor() Ownable() { }
+&nbsp;
+&nbsp;
+    // Functions
+    function createCapsule(
+        address payable _beneficiary,
+        uint48 _distributionDate,
+        uint256 _periodSize,
+        uint256 _periodCount,
+        address[] calldata _tokens,
+        uint256[] calldata _values,
+        bool addingAssetsAllowed
+    ) public payable returns(Capsule memory) {
+        require(_distributionDate &gt; block.timestamp, "Distribution Date must be in future");
+        require(_tokens.length == _values.length, "Tokens and Values must be same length");
+        require(_periodSize &gt;= 1, "Period Size must greater than or equal to 1");
+        require(_periodCount &gt;= 1, "Period Count must greater than or equal to 1");
+        require(_tokens.length &lt;= 10, "Assets exceed maximum of 10 per capsule");
+&nbsp;
+        for (uint256 i = 0; i &lt; _tokens.length; i++) {
+            require(_values[i] &gt; 0, "Token value must be greater than 0");
+            ERC20 erc20Token = ERC20(_tokens[i]);
+            erc20Token.safeTransferFrom(msg.sender, address(this), _values[i]);
+        }
+&nbsp;
+        uint256 capsuleId = capsules.length;
+        capsules.push(
+            Capsule(
+                capsuleId,
+                msg.sender,
+                _beneficiary,
+                _distributionDate,
+                _periodSize,
+                _periodCount,
+                0,
+                uint48(block.timestamp),
+                false,
+                msg.value,
+                _tokens,
+                _values,
+                addingAssetsAllowed
+            )
+        );
+&nbsp;
+        sent[msg.sender].add(capsuleId);
+        received[_beneficiary].add(capsuleId);
+        emit CapsuleCreated(capsuleId);
+        return getCapsule(capsuleId);
+    }
+&nbsp;
+    function openCapsule(uint256 capsuleId) public {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(capsules.length &gt; capsuleId, "Capsule does not exist");
+        Capsule memory capsule = capsules[capsuleId];
+        require(msg.sender == capsule.beneficiary, "You are not the beneficiary of this Capsule");
+        require(!capsule.empty, "Capsule is empty");
+        require(block.timestamp &gt;= capsule.distributionDate, "Capsule has not matured yet");
+        uint256 nextClaimDate = capsule.distributionDate + capsule.claimedPeriods * capsule.periodSize;
+        require(block.timestamp &gt;= nextClaimDate, "No periods available to claim"); 
+&nbsp;
+        uint256 claimablePeriods = (block.timestamp - nextClaimDate) / capsule.periodSize + 1;
+        uint256 unclaimedPeriods = capsule.periodCount - capsule.claimedPeriods;
+        claimablePeriods = claimablePeriods &gt; unclaimedPeriods ? unclaimedPeriods : claimablePeriods;
+&nbsp;
+        capsules[capsuleId].claimedPeriods = capsule.claimedPeriods + claimablePeriods;
+        capsules[capsuleId].empty = capsule.claimedPeriods + claimablePeriods == capsule.periodCount;
+&nbsp;
+        if (capsule.value &gt; 0) capsule.beneficiary.transfer(capsule.value * claimablePeriods / capsule.periodCount);
+        for (uint256 i = 0; i &lt; capsule.tokens.length; i++) {
+            ERC20 erc20Token = ERC20(capsule.tokens[i]);
+            erc20Token.safeTransfer(capsule.beneficiary, capsule.amounts[i] * claimablePeriods / capsule.periodCount);
+        }
+&nbsp;
+        emit CapsuleOpened(capsuleId);
+    }
+&nbsp;
+    function addAssets(uint256 capsuleId, address[] calldata _tokens, uint256[] calldata _values) public payable {
+        require(capsules.length &gt; capsuleId, "Capsule does not exist");
+        require(_tokens.length == _values.length, "Tokens and Values must be same length");
+        Capsule memory capsule = capsules[capsuleId];
+        require(capsule.addingAssetsAllowed, "Adding assets not allowed for this Capsule");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(msg.sender == capsule.grantor, "You are not the grantor of this Capsule");
+        require(block.timestamp &lt; capsule.distributionDate, "Capsule is past distribution date");
+&nbsp;
+        for (uint256 i = 0; i &lt; _tokens.length; i++) {
+            require(_values[i] &gt; 0, "Token value must be greater than 0");
+            ERC20 erc20Token = ERC20(_tokens[i]);
+            erc20Token.safeTransferFrom(msg.sender, address(this), _values[i]);
+&nbsp;
+            bool tokenExists = false;
+            for (uint256 j = 0; j &lt; capsule.tokens.length; j++) {
+                if (capsule.tokens[j] == _tokens[i]) {
+                    capsules[capsuleId].amounts[j] += _values[i];
+                    tokenExists = true;
+                    break;
+                }
+            }
+            if (!tokenExists) {
+                capsules[capsuleId].tokens.push(_tokens[i]);
+                capsules[capsuleId].amounts.push(_values[i]);
+            }
+        }
+        require(capsules[capsuleId].tokens.length &lt;= 10, "Assets exceed maximum of 10 per capsule");
+&nbsp;
+        capsules[capsuleId].value += msg.value; 
+&nbsp;
+        emit AddedAssets(capsuleId, _tokens, _values, msg.value);
+    }
+&nbsp;
+    function updateBeneficiary(uint256 capsuleId, address payable beneficiary) public {
+        require(capsules.length &gt; capsuleId, "Capsule does not exist");
+        Capsule memory capsule = capsules[capsuleId];
+        require(msg.sender == capsule.beneficiary, "You are not the beneficiary of this Capsule");
+        require(!capsule.empty, "Capsule is empty");
+        require(capsule.beneficiary != beneficiary, "Beneficiary is not different to curret");
+        received[capsule.beneficiary].remove(capsuleId);
+        capsules[capsuleId].beneficiary = beneficiary;
+        received[beneficiary].add(capsuleId);
+        emit UpdatedBeneficiary(capsuleId, beneficiary);
+    }
+&nbsp;
+&nbsp;
+    // Views
+    function getCapsuleCount() public view returns(uint256) {
+        return capsules.length;
+    }
+    
+    function getCapsule(uint256 capsuleId) public view returns(Capsule memory) {
+        require(capsules.length &gt; capsuleId, "Capsule does not exist");
+        return capsules[capsuleId];
+    }
+&nbsp;
+    function getCapsules() public view returns(Capsule[] memory) {
+        return capsules;
+    }
+&nbsp;
+    function getSentCapsules(address grantor) public view returns(Capsule[] memory) {
+        uint256 count = sent[grantor].length();
+        Capsule[] memory _capsules = new Capsule[](count);
+        for (uint256 i = 0; i &lt; count; i++) {
+            _capsules[i] = capsules[sent[grantor].at(i)];
+        }
+        return _capsules;
+    }
+&nbsp;
+    function getReceivedCapsules(address beneficiary) public view returns(Capsule[] memory) {
+        uint256 count = received[beneficiary].length();
+        Capsule[] memory _capsules = new Capsule[](count);
+        for (uint256 i = 0; i &lt; count; i++) {
+            _capsules[i] = capsules[received[beneficiary].at(i)];
+        }
+        return _capsules;
+    }
+&nbsp;
+&nbsp;
+    // Events
+    event CapsuleOpened(uint256 capsuleId);
+    event CapsuleCreated(uint256 capsuleId);
+    event AddedAssets(uint256 capsuleId, address[] tokens, uint256[] values, uint256 eth);
+    event UpdatedBeneficiary(uint256 capsuleId, address payable beneficiary);
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 06 2021 21:15:16 GMT+0800 (China Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
