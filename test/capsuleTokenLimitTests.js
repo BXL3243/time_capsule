@@ -44,7 +44,8 @@ const createCapsule = async (tokenCount) => {
     1,
     tokens.slice(0, tokenCount).map((t) => t.address),
     createValues(tokenCount),
-    true
+    true,
+    ""
   );
 
   const capsuleCount = await capsuleContract.getCapsuleCount();

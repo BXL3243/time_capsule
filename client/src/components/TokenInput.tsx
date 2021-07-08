@@ -55,7 +55,7 @@ const Arrow = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   top: 50%;
   right: 1rem;
-  transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%) rotate(0deg);
 `;
 
 const InputContainer = styled.div`

@@ -21,7 +21,7 @@ const Header = styled.h1`
   font-size: 17rem;
   font-weight: 700;
   color: var(--main);
-  transform: rotate(-10deg) translateY(-8rem);
+  transform: rotate(0deg) translateY(0rem);
   height: 13rem;
   margin-left: 10rem;
 
@@ -29,7 +29,7 @@ const Header = styled.h1`
     font-size: 7rem;
     margin-left: 0;
     text-align: center;
-    transform: rotate(-10deg) translateY(0);
+    transform: rotate(0deg) translateY(0);
     margin-top: 3rem;
   }
 `;
@@ -50,8 +50,8 @@ const Left = styled.div`
   align-items: center;
   width: 75rem;
   margin-left: 4rem;
-  margin-top: 20rem;
-  transform: rotate(-4deg);
+  margin-top: 7rem;
+  transform: rotate(0deg);
 
   @media (max-width: 600px) {
     width: 100%;
@@ -78,9 +78,27 @@ const SubHeader = styled.div`
   }
 `;
 
+const SubHeaderSpan = styled.span`
+  color: var(--sub);
+  margin-top: 25px;
+  font-size: 2rem;
+  width: 75%;
+  line-height: 1.4;
+  margin-bottom: 7rem;
+  margin-left: 10rem;
+
+  @media (max-width: 600px) {
+    margin-top: 0;
+    margin-left: 0;
+    width: 90%;
+    margin-left: 2rem;
+    margin-bottom: 6rem;
+  }
+`;
+
 const ButtonContainer = styled.div`
   margin-bottom: 13rem;
-  transform: rotate(2deg);
+  transform: rotate(0deg);
 
   @media (max-width: 600px) {
     margin-bottom: 3rem;
@@ -102,17 +120,22 @@ const Landing = (): JSX.Element => {
 
   return (
     <StyledLanding>
-      <Header>Crypto Capsule</Header>
+      <Header>Time Vault</Header>
       <Content>
         <Left>
           <SubHeader>
-            Send crytocurrencies into the future, safely and securely using
-            smart contracts
+            "Be a friend of time."
+            <SubHeaderSpan>
+              <br />A BlockChain Lecture Final Project
+              <br />
+              Team Member: LI Bosong, PENG Feng, HOU Zhizhong, CHEN Lingfei,
+              FENG Zhe
+            </SubHeaderSpan>
           </SubHeader>
           <ButtonContainer>
             <Button
               primary
-              text={address ? "Create Capsule" : "Connect"}
+              text={address ? "Create Vault" : "Connect"}
               click={() => {
                 if (address) setCreatingCapsule(true);
                 else connect();

@@ -13,7 +13,7 @@ const StyledBlockContent = styled.div`
   width: ${(props: BlockContentProps) => (props.width ? props.width : "auto")};
   padding: ${(props: BlockContentProps) => (props.large ? "5rem" : "3rem")};
   padding-top: 3.3rem;
-  transform: rotate(-3deg);
+  transform: rotate(0deg);
   margin-bottom: ${(props: BlockContentProps) =>
     props.marginBottom ? props.marginBottom : "0"};
 

@@ -16,9 +16,9 @@ const HomePage = (): JSX.Element => {
     <StyledHomePage>
       <Landing />
       <WhatIsSlide />
-      <TokenSlide />
+      {/* <TokenSlide /> */}
       <WhyUseSlide />
-      <SupportedNetworks />
+      {/* <SupportedNetworks /> */}
     </StyledHomePage>
   );
 };

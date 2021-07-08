@@ -9,9 +9,9 @@ type CountdownProps = {
 };
 
 const StyledCountdown = styled.div`
-  font-size: ${(props: CountdownProps) => (props.short ? "3rem" : "6rem")};
+  font-size: ${(props: CountdownProps) => (props.short ? "3rem" : "4rem")};
   transform: ${(props: CountdownProps) =>
-    props.short ? "none" : "rotate(-3deg)"};
+    props.short ? "none" : "rotate(0deg)"};
   color: var(--main);
   margin-bottom: ${(props: CountdownProps) => (props.short ? "0" : "2rem")};
 `;
@@ -42,7 +42,7 @@ const Countdown = (props: Props): JSX.Element => {
   return (
     <StyledCountdown short={props.short}>
       {props.capsule.empty
-        ? "Capsule is Empty"
+        ? "Vault is Empty"
         : canBeOpened
         ? "Ready to Open"
         : countdown(

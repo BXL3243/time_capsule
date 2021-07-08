@@ -17,8 +17,8 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Caveat', cursive;
-      font-size: 10px;
+      font-family: 'Otomanopee One', cursive;
+      font-size: 8px;
     }
   
     button {

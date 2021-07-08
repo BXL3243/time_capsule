@@ -23,7 +23,7 @@ const StyledCapsuleOverview = styled.div`
 `;
 
 const CapsuleImage = styled.img`
-  width: 40rem;
+  width: 20rem;
   margin-bottom: 2rem;
 
   @media (max-width: 600px) {
@@ -32,9 +32,9 @@ const CapsuleImage = styled.img`
 `;
 
 const Usd = styled.div`
-  font-size: 8rem;
+  font-size: 4rem;
   margin-bottom: 2rem;
-  transform: rotate(-3deg);
+  transform: rotate(0deg);
   color: var(--main);
 
   @media (max-width: 600px) {

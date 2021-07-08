@@ -40,7 +40,7 @@ const Indicator = styled.div`
   position: absolute;
   top: 200%;
   left: 30%;
-  transform: rotate(45deg) translateX(-50%);
+  transform: rotate(0deg) translateX(-50%);
   border-radius: 0.2rem;
   z-index: 2;
 `;

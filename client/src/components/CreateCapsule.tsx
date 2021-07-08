@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import crypto from "crypto";
+import copy from "copy-to-clipboard";
 import BN from "bn.js";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -23,6 +25,7 @@ import { ValidationError } from "../styles/ValidationError";
 import Selector from "./Selector";
 import Dropdown from "./Dropdown";
 import { getGlobals } from "../utils/globals";
+import Button from "./Button";
 
 type Approval = {
   asset: Asset;
@@ -33,6 +36,23 @@ const Content = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+`;
+
+const ButtonContainer = styled.div`
+  margin-top: 2rem;
+  display: flex;
+
+  button {
+    margin: 0 1rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    button {
+      margin: 1rem 0;
+    }
+  }
 `;
 
 type Props = {
@@ -50,14 +70,21 @@ const CreateCapsule = (props: Props): JSX.Element => {
 
   const [loading, setLoading] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [messagePasswordCopyState, setMessagePasswordCopyState] = useState(
+    false
+  );
   const [beneficiary, setBeneficiary] = useState("");
+  const [message, setMessage] = useState("");
   const [distributionDate, setDistributionDate] = useState("");
+  const [messagePassword, setMessagePassword] = useState("");
   const [periodType, setPeriodType] = useState("immediate");
   const [distributionFrequency, setDistributionFrequency] = useState("monthly");
   const [distributionPeriods, setDistributionPeriods] = useState("");
   const [distributionDateError, setDistributionDateError] = useState("");
   const [addingAssetsAllowed, setAddingAssetsAllowed] = useState("yes");
   const [addressError, setAddressError] = useState("");
+  const [messageError, setMessageError] = useState("");
+  const [messageCopyError, setMessageCopyError] = useState("");
   const [distributionPeriodsError, setDistributionPeriodsError] = useState("");
   const [assets, setAssets] = useState<Asset[]>([ethAsset]);
   const [approvals, setApprovals] = useState<Approval[]>([approval]);
@@ -100,6 +127,25 @@ const CreateCapsule = (props: Props): JSX.Element => {
       });
   };
 
+  const aesEncrypt = (value: string, key: string): string => {
+    if (value === "") return "";
+    const encValue = escape(value);
+    const cipher = crypto.createCipheriv(
+      "aes-128-cbc",
+      key.slice(0, 16),
+      key.slice(16)
+    );
+    let crypted = cipher.update(encValue, "utf8", "hex");
+    crypted += cipher.final("hex");
+    return crypted;
+  };
+
+  const getMD5 = (value: string): string => {
+    const hash = crypto.createHash("md5");
+    hash.update(value);
+    return hash.digest("hex"); // 7e1977739c748beac0c0fd14fd26a544
+  };
+
   const create = async () => {
     if (!validate()) return;
 
@@ -120,14 +166,21 @@ const CreateCapsule = (props: Props): JSX.Element => {
     await Promise.all(promises);
 
     const date = inputToDate(distributionDate);
+    const sigMsg = message === "" ? "" : "PF:".concat(message);
+    const hashMsg = sigMsg === "" ? "" : getMD5(sigMsg).concat(message);
+    const encMsg = aesEncrypt(hashMsg, messagePassword);
+
     await createCapsule(
       beneficiary,
       date,
       getPeriodSize(distributionFrequency),
       periodType === "immediate" ? 1 : Number(distributionPeriods),
       _assets,
-      addingAssetsAllowed === "yes"
+      addingAssetsAllowed === "yes",
+      encMsg
     );
+
+    console.log("create:", encMsg);
 
     gtag("event", "created");
     gtag("event", "conversion");
@@ -135,24 +188,48 @@ const CreateCapsule = (props: Props): JSX.Element => {
   };
 
   const isValid = (): boolean =>
-    !addressError && !distributionPeriodsError && !distributionDateError;
+    !addressError &&
+    !distributionPeriodsError &&
+    !distributionDateError &&
+    !messageError &&
+    !messageCopyError;
 
   const validate = (): boolean => {
     const dateValid = validateDate(distributionDate);
     const addressValid = validateAddress(beneficiary);
+    const messageValid = validateMessage(message);
+    const messagePasswordValid = validatePassword(messagePassword);
     const periodsValid =
       periodType === "immediate" ? true : validatePeriods(distributionPeriods);
-    return dateValid && addressValid && periodsValid;
+    return (
+      dateValid &&
+      addressValid &&
+      messageValid &&
+      messagePasswordValid &&
+      periodsValid
+    );
   };
 
   const validateDate = (value: string): boolean => {
     try {
-      const items = value.split("/");
-      const newDate = new Date(`${items[2]}/${items[0]}/${items[1]}`);
+      const lDt = value.split(" ");
+      const value_d = lDt[0];
+      const items = value_d.split("/");
+      const time = lDt.length > 1 ? lDt[1].split(":") : ["00", "00", "00"];
+      const newDate = new Date(
+        `${items[0]}/${items[1]}/${items[2]} ${time[0]}:${time[1]}:${time[2]}`
+      );
       const now = new Date();
-      if (items.length !== 3) setDistributionDateError("Incorrect Date format");
+      if (items.length !== 3 || time.length !== 3)
+        setDistributionDateError(
+          "Incorrect Date format: " +
+            `${items[0]}/${items[1]}/${items[2]} ${time[0]}:${time[1]}:${time[2]}`
+        );
       else if (newDate < now)
-        setDistributionDateError("Date must be in future");
+        setDistributionDateError(
+          "Date must be in future: " +
+            `${items[0]}/${items[1]}/${items[2]} ${time[0]}:${time[1]}:${time[2]}`
+        );
       else {
         setDistributionDateError("");
         return true;
@@ -167,6 +244,28 @@ const CreateCapsule = (props: Props): JSX.Element => {
     if (value.length !== 42) setAddressError("Invalid Address");
     else {
       setAddressError("");
+      return true;
+    }
+    return false;
+  };
+
+  const validateMessage = (value: string): boolean => {
+    const encValue = escape(value);
+    if (encValue.length > 100) setMessageError("Too Long");
+    else if (unescape(encValue) !== value)
+      setMessageError("Cannot be Encoded by Unicode");
+    else {
+      setMessageError("");
+      return true;
+    }
+    return false;
+  };
+
+  const validatePassword = (value: string): boolean => {
+    if (message.length > 0 && value.length !== 32)
+      setMessageCopyError("Please Push the Copy Button Under the Message Box");
+    else {
+      setMessageCopyError("");
       return true;
     }
     return false;
@@ -192,12 +291,35 @@ const CreateCapsule = (props: Props): JSX.Element => {
     return false;
   };
 
+  const randomString = (len: number): string => {
+    const chars = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678";
+    const maxPos = chars.length;
+    let pwd = "";
+    for (let i = 0; i < len; i++) {
+      pwd += chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return pwd;
+  };
+
+  const copyMessagePassword = (): boolean => {
+    const currMessagePassword = randomString(32);
+    setMessagePassword(currMessagePassword);
+    if (copy(currMessagePassword)) {
+      console.log("Password Copied");
+      setMessagePasswordCopyState(true);
+      validatePassword(currMessagePassword);
+      return true;
+    }
+    setMessagePasswordCopyState(false);
+    return false;
+  };
+
   return (
     <>
       <Popup
         show={!complete}
         close={props.close}
-        header="Create Capsule"
+        header="Create Vault"
         content={
           <Content>
             <Selector
@@ -216,7 +338,7 @@ const CreateCapsule = (props: Props): JSX.Element => {
                   ? "Distribution Date"
                   : "Distribution Start Date"
               }
-              placeholder="mm/dd/yyyy"
+              placeholder="yyyy/mm/dd HH:MM:SS"
               tooltip={
                 periodType === "immediate"
                   ? "This is the date when the capsule will be able to be opened"
@@ -268,6 +390,34 @@ const CreateCapsule = (props: Props): JSX.Element => {
               }}
             />
             {addressError && <ValidationError>{addressError}</ValidationError>}
+            <TextInput
+              label="Message"
+              placeholder="Hello!"
+              tooltip="This is the message you send to your beneficiary. It can only be seen after the Capsule is unlocked and the password below is input."
+              value={message}
+              setValue={(value: string) => {
+                validateMessage(value);
+                setMessage(value);
+              }}
+            />
+            {messageError && <ValidationError>{messageError}</ValidationError>}
+            {messageCopyError && (
+              <ValidationError>{messageCopyError}</ValidationError>
+            )}
+            <ButtonContainer>
+              <Button
+                small
+                disabled={message.length === 0}
+                text={
+                  message.length === 0
+                    ? "No Message Attached"
+                    : messagePasswordCopyState
+                    ? "Message Password Copied"
+                    : "Copy Message Password"
+                }
+                click={() => copyMessagePassword()}
+              />
+            </ButtonContainer>
             <Selector
               options={["yes", "no"]}
               activeOption={addingAssetsAllowed}

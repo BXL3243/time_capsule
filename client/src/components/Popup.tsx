@@ -55,7 +55,7 @@ const Header = styled.h3`
   font-weight: 700;
   margin-bottom: 3rem;
   color: var(--main);
-  transform: rotate(-4deg);
+  transform: rotate(0deg);
 `;
 
 const Image = styled.img`

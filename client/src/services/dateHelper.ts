@@ -2,8 +2,14 @@ import BN from "bn.js";
 import CapsuleType from "../types/CapsuleType";
 
 export const inputToDate = (input: string): Date => {
-  const items = input.split("/");
-  return new Date(`${items[2]}/${items[0]}/${items[1]}`);
+  const lDt = input.split(" ");
+  const value_d = lDt[0];
+  const items = value_d.split("/");
+  const time = lDt.length > 1 ? lDt[1].split(":") : ["00", "00", "00"];
+  const newDate = new Date(
+    `${items[0]}/${items[1]}/${items[2]} ${time[0]}:${time[1]}:${time[2]}`
+  );
+  return newDate;
 };
 
 export const dateToUnix = (date: Date): BN => {

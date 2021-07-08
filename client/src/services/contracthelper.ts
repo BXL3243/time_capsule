@@ -45,7 +45,8 @@ export const createCapsule = async (
   periodSize: number,
   periodCount: number,
   assets: Asset[],
-  addingAssetsAllowed: boolean
+  addingAssetsAllowed: boolean,
+  message: string
 ): Promise<void> => {
   const address = await getAddress();
   const capsuleContract = await getCapsuleContract();
@@ -66,7 +67,8 @@ export const createCapsule = async (
       periodCount,
       otherAssets.map((a: Asset) => a.token),
       otherAssets.map((a: Asset) => a.value),
-      addingAssetsAllowed
+      addingAssetsAllowed,
+      message
     )
     .send(tx);
 };
@@ -229,4 +231,13 @@ export const getAssetLongValue = async (
   if (value === 0) return "0";
   const decimals = await getAssetDecimals(token);
   return Math.round(value * 10 ** decimals).toString();
+};
+
+export const getCapsuleMessage = async (capsuleId: number): Promise<string> => {
+  const capsuleContract = await getCapsuleContract();
+  const encMessage = await capsuleContract.methods
+    .getMessage(new BN(capsuleId))
+    .call();
+  console.log(encMessage);
+  return encMessage;
 };

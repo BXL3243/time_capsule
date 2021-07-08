@@ -12,9 +12,9 @@ type SectionContent = {
 
 const sections: SectionContent[] = [
   {
-    header: "Why Use Crypto Capsule?",
+    header: "Why Use Time Vault?",
     body:
-      "Crypto Capsule is super versitile! Click through to see some example use cases <3",
+      "Time Vault is super versitile! Click through to see some example use cases <3",
     button: "Show Me!",
   },
   {
@@ -24,21 +24,21 @@ const sections: SectionContent[] = [
     button: "Tell me More...",
   },
   {
-    header: "Trustless Trust Fund",
+    header: "Trustless Trust Fund/Crypto Deposit",
     body:
-      "Crypto Capsule can be used as a trust fund to distribute assets to a beneficiary. This could be used to build a trust fund for your children that distributes to them when they turn 21 years of age.",
+      "Time Vault can be used as a trust fund to distribute assets to a beneficiary. This could be used to build a trust fund for your children that distributes to them when they turn 21 years of age. Or, Use Time Vault as a term deposit, top up when you want to add to your savings, and set the Vault to open when you want to withdraw.",
     button: "So cool!!!",
   },
   {
     header: "Lock LP Tokens",
     body:
-      "Sometimes a Protocol will allocate a portion of minted tokens to providing liquidity. These are often locked for a period of time to give users confidence that there will be liquidity. Crypto Capsule can be used to lock these LP Tokens and share the capsule with users as proof.",
-    button: "No Way :O",
+      "Sometimes a Protocol will allocate a portion of minted tokens to providing liquidity. These are often locked for a period of time to give users confidence that there will be liquidity. Time Vault can be used to lock these LP Tokens and share the Vault with users as proof.",
+    button: "No Way! What about message",
   },
   {
-    header: "Crypto Term Deposit",
+    header: "Time message",
     body:
-      "Use Crypto Capsule as a term deposit, top up when you want to add to your savings, and set the capsule to open when you want to withdraw. Great for dollar cost averaging in and out for the next bull run.",
+      "Use Time Vault Leave a love message or advice to a loved one. To be read at the special moment! Or, Make a list of the main things you want to do in the next 10 years and record this information into a crypto time capsule so that you can contemplate it in the future!.",
     button: "Epic <3",
   },
 ];
@@ -110,7 +110,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-right: 3rem;
-  transform: rotate(-1deg);
+  transform: rotate(0deg);
 `;
 
 const WhyUseSlide = (): JSX.Element => {

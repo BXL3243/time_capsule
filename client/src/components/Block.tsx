@@ -18,7 +18,7 @@ const TopLeft = styled.div`
   border-top: solid 2px var(--main);
   background: ${(props: Props) =>
     props.pressed ? "var(--main)" : "var(--bg)"};
-  transform: translate(-6px, -2px) rotate(45deg);
+  transform: translate(-6px, -2px) rotate(0deg);
 `;
 
 const TopRight = styled.div`
@@ -30,11 +30,11 @@ const TopRight = styled.div`
   background: ${(props: Props) =>
     props.pressed ? "var(--main)" : "var(--bg)"};
   border-top: solid 2px var(--main);
-  /* transform: translate(-2px, -4px) rotate(45deg) scaleX(1); */
+  /* transform: translate(-2px, -4px) rotate(0deg) scaleX(1); */
   transform: ${(props: Props) =>
     props.flatten
-      ? "translate(-3.5px, -5.5px) rotate(45deg) scaleX(0.6)"
-      : "translate(-2px, -4px) rotate(45deg) scaleX(1)"};
+      ? "translate(-3.5px, -5.5px) rotate(0deg) scaleX(0.6)"
+      : "translate(-2px, -4px) rotate(0deg) scaleX(1)"};
   transition: transform 0.3s;
 `;
 
@@ -47,11 +47,11 @@ const BottomLeft = styled.div`
   background: ${(props: Props) =>
     props.pressed ? "var(--main)" : "var(--bg)"};
   border-top: solid 2px var(--main);
-  transform: translate(-3px, -2px) rotate(-135deg);
+  transform: translate(-3px, -2px) rotate(0deg);
   transform: ${(props: Props) =>
     props.flatten
-      ? "translate(-4.5px, -3.5px) rotate(-135deg) scaleX(0.6)"
-      : "translate(-3px, -2px) rotate(-135deg) scaleX(1)"};
+      ? "translate(-4.5px, -3.5px) rotate(0deg) scaleX(0.6)"
+      : "translate(-3px, -2px) rotate(0deg) scaleX(1)"};
   transition: transform 0.3s;
 `;
 

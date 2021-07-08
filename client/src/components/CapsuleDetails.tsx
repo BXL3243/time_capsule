@@ -15,7 +15,7 @@ const Header = styled.div`
   margin-bottom: 2rem;
   color: var(--main);
   text-align: center;
-  transform: rotate(-4deg);
+  transform: rotate(0deg);
   margin-top: -1rem;
 `;
 
@@ -48,7 +48,7 @@ const CapsuleDetails = (props: Props): JSX.Element => {
         marginBottom="6rem"
         content={
           <>
-            <Header>Capsule Details</Header>
+            <Header>Vault Details</Header>
             <SubHeader>
               <SubHeaderMain>Grantor:</SubHeaderMain>
               {props.capsule.grantor}

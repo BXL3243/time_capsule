@@ -9,25 +9,25 @@ type ButtonType = {
 
 const buttons: ButtonType[][] = [
   [
-    {
-      label: "GitHub",
-      link: "https://github.com/chase-manning/crypto-capsule",
-    },
-    {
-      label: "Contract",
-      link:
-        "https://etherscan.io/address/0x56fDA59a60a4fBf9bf090b4b5aF6B76964E5B1B4",
-    },
+    // {
+    //   label: "GitHub",
+    //   link: "https://github.com/chase-manning/crypto-capsule",
+    // },
+    // {
+    //   label: "Contract",
+    //   link:
+    //     "https://etherscan.io/address/0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    // },
   ],
   [
-    {
-      label: "Twitter",
-      link: "https://twitter.com/crypto_capsule",
-    },
-    {
-      label: "Discord",
-      link: "https://discord.gg/K3svXV2y",
-    },
+    // {
+    //   label: "Twitter",
+    //   link: "https://twitter.com/crypto_capsule",
+    // },
+    // {
+    //   label: "Discord",
+    //   link: "https://discord.gg/K3svXV2y",
+    // },
   ],
 ];
 

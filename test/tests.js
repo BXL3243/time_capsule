@@ -68,7 +68,8 @@ describe("Capsule", () => {
       1,
       [tokenA.address],
       [BASE],
-      true
+      true,
+      ""
     );
 
     const balanceAfter = Number(await tokenA.balanceOf(walletA.address));
@@ -121,7 +122,8 @@ describe("Capsule", () => {
         1,
         [tokenA.address],
         [BASE],
-        false
+        false,
+        ""
       )
     ).to.be.revertedWith("Distribution Date must be in future");
   });
@@ -141,7 +143,8 @@ describe("Capsule", () => {
         1,
         [tokenA.address],
         [0],
-        true
+        true,
+        ""
       )
     ).to.be.revertedWith("Token value must be greater than 0");
   });
@@ -161,7 +164,8 @@ describe("Capsule", () => {
         1,
         [tokenA.address, tokenB.address],
         [BASE],
-        true
+        true,
+        ""
       )
     ).to.be.revertedWith("Tokens and Values must be same length");
 
@@ -173,7 +177,8 @@ describe("Capsule", () => {
         1,
         [tokenA.address],
         [BASE, BASE],
-        false
+        false,
+        ""
       )
     ).to.be.revertedWith("Tokens and Values must be same length");
   });
@@ -193,7 +198,8 @@ describe("Capsule", () => {
         1,
         [tokenA.address],
         [BASE],
-        true
+        true,
+        ""
       )
     ).to.be.revertedWith("Period Size must greater than or equal to 1");
   });
@@ -213,7 +219,8 @@ describe("Capsule", () => {
         0,
         [tokenA.address],
         [BASE],
-        false
+        false,
+        ""
       )
     ).to.be.revertedWith("Period Count must greater than or equal to 1");
   });
@@ -238,7 +245,8 @@ describe("Capsule", () => {
       1,
       [tokenA.address],
       [BASE],
-      true
+      true,
+      ""
     );
 
     testCapsule = await capsuleContract.getCapsule(capsuleCount);
@@ -304,7 +312,8 @@ describe("Capsule", () => {
       5,
       [tokenA.address],
       [BASE],
-      false
+      false,
+      ""
     );
 
     testCapsule = await capsuleContract.getCapsule(capsuleCount);
@@ -405,6 +414,7 @@ describe("Capsule", () => {
       [tokenA.address, tokenB.address, tokenC.address],
       [BASE, BASE, BASE],
       true,
+      "",
       { value: ethers.utils.parseEther("1") }
     );
 
@@ -434,6 +444,7 @@ describe("Capsule", () => {
       [tokenA.address],
       [BASE],
       false,
+      "",
       { value: ethers.utils.parseEther("1") }
     );
 
@@ -474,6 +485,7 @@ describe("Capsule", () => {
       [tokenA.address],
       [BASE],
       true,
+      "",
       { value: ethers.utils.parseEther("1") }
     );
 
@@ -611,6 +623,7 @@ describe("Capsule", () => {
       [tokenA.address],
       [BASE],
       true,
+      "",
       { value: ethers.utils.parseEther("1") }
     );
 
@@ -678,7 +691,8 @@ describe("Capsule", () => {
     ).to.be.revertedWith("You are not the beneficiary of this Capsule");
   });
 
-  it("Should create Capsule", async () => {
+  it("Should create Capsule with message", async () => {
+    const testStr = "how are you";
     const now = new Date();
     now.setMonth(now.getMonth() + 29);
     await network.provider.send("evm_setNextBlockTimestamp", [dateToUnix(now)]);
@@ -696,6 +710,7 @@ describe("Capsule", () => {
       [tokenA.address],
       [BASE],
       true,
+      testStr,
       { value: ethers.utils.parseEther("1") }
     );
 
@@ -707,8 +722,11 @@ describe("Capsule", () => {
     await network.provider.send("evm_mine");
   });
 
-  it("Should open capsule", async () => {
+  it("Should open capsule and find same message", async () => {
+    const testStr = "how are you";
     await capsuleContract.openCapsule(testCapsule.id);
+    const returnStr = await capsuleContract.getMessage(testCapsule.id);
+    expect(returnStr).to.equal(testStr);
   });
 
   it("Should fail for changing beneficiary for open Capsule", async () => {

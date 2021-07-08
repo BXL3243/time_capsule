@@ -9,13 +9,14 @@ import CapsuleType, { Asset } from "../types/CapsuleType";
 import Button from "./Button";
 import AddAssets from "./AddAssets";
 import BlockContent from "./BlockContent";
+import UnlockMsg from "./UnlockMsg";
 
 const Header = styled.div`
   font-size: 5rem;
   margin-bottom: 2rem;
   color: var(--main);
   text-align: center;
-  transform: rotate(-4deg);
+  transform: rotate(0deg);
   margin-top: -1rem;
 `;
 
@@ -59,6 +60,12 @@ type Props = {
   update: () => void;
 };
 
+// !!FOR TEST
+let capMsg = "";
+capMsg = "asadsad";
+const capMsgKey = "123213";
+// !!FOR TEST
+
 const CapsuleAssets = (props: Props): JSX.Element => {
   const address = useSelector(selectAddress);
 
@@ -99,12 +106,14 @@ const CapsuleAssets = (props: Props): JSX.Element => {
     updateAssets();
   }, []);
 
+  const [UnlockingMsg, setUnlockingMsg] = useState(false);
+
   return (
     <>
       <BlockContent
         content={
           <>
-            <Header>Capsule Assets</Header>
+            <Header>Vault Assets</Header>
             {props.capsule.assets.map((asset: Asset) => (
               <AssetContainer>
                 <TokenContainer>
@@ -128,6 +137,29 @@ const CapsuleAssets = (props: Props): JSX.Element => {
                 </SubHeaderMain>
               </AssetContainer>
             ))}
+            <AssetContainer>
+              <TokenContainer>
+                <SubHeaderMain>Message</SubHeaderMain>
+              </TokenContainer>
+              <Button
+                primary
+                disabled={capMsg === "" || !props.capsule.empty}
+                text={
+                  capMsg === ""
+                    ? "None"
+                    : !props.capsule.empty
+                    ? "Locked"
+                    : "Input Password"
+                }
+                click={() => setUnlockingMsg(true)}
+              />
+              <UnlockMsg
+                capsuleId={props.capsule.id}
+                show={isOpen && UnlockingMsg}
+                close={() => setUnlockingMsg(false)}
+                // updateCapsules={() => props.update()}
+              />
+            </AssetContainer>
             {props.capsule.grantor === address &&
               props.capsule.addingAssetsAllowed &&
               !isOpen && (

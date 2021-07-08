@@ -13,14 +13,14 @@ type GlobalsType = {
 };
 
 const RINKEBY_GLOBALS: GlobalsType = {
-  CAPSULE: "0x56fDA59a60a4fBf9bf090b4b5aF6B76964E5B1B4",
+  CAPSULE: "0xC0eDd76E6cb2a48C9980f224CA72df33D501f733",
   TOKENS: rinkebyTokens,
   TOKENS_URL: "",
   ORACLES: rinkebyOracles,
 };
 
 const ETH_GLOBALS: GlobalsType = {
-  CAPSULE: "0x56fDA59a60a4fBf9bf090b4b5aF6B76964E5B1B4",
+  CAPSULE: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
   TOKENS: [],
   TOKENS_URL: "https://tokens.coingecko.com/uniswap/all.json",
   ORACLES: ethOracles,

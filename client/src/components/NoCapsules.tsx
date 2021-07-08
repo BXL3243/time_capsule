@@ -19,7 +19,7 @@ const Text = styled.h4`
   font-weight: 500;
   margin-top: 1rem;
   margin-bottom: 5rem;
-  transform: rotate(-6deg);
+  transform: rotate(0deg);
 `;
 
 const Image = styled.img`
@@ -28,7 +28,7 @@ const Image = styled.img`
 `;
 
 const ButtonContainter = styled.div`
-  transform: rotate(-2deg);
+  transform: rotate(0deg);
 `;
 
 type Props = {
@@ -58,7 +58,7 @@ const NoCapsules = (props: Props): JSX.Element => {
       <Image src={noCapsulesImage} alt="Empty Capsule Image" />
       <ButtonContainter>
         <Button
-          text={address ? "Create Capsule" : "Connect"}
+          text={address ? "Create Vault" : "Connect"}
           click={() => {
             if (address) setOpen(true);
             else connect();

@@ -110,7 +110,7 @@ const Capsule = (props: Props): JSX.Element => {
               }
             />
             <Countdown capsule={props.capsule} short />
-            <Crypto>
+            {/* <Crypto>
               {props.capsule.assets.map((asset: Asset) => (
                 <CyptoIconContainer key={asset.token}>
                   <CryptoIcon
@@ -127,10 +127,10 @@ const Capsule = (props: Props): JSX.Element => {
                   />
                 </CyptoIconContainer>
               ))}
-            </Crypto>
+            </Crypto> */}
             <Button
               click={() => history.push(`/capsule/${props.capsule.id}`)}
-              text="View Capsule"
+              text="View Vault"
             />
           </Content>
         }

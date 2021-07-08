@@ -25,6 +25,7 @@ contract CryptoCapsule is Ownable{
         address[] tokens;
         uint256[] amounts;
         bool addingAssetsAllowed;
+        string message;
     }
 
     Capsule[] capsules;
@@ -44,7 +45,8 @@ contract CryptoCapsule is Ownable{
         uint256 _periodCount,
         address[] calldata _tokens,
         uint256[] calldata _values,
-        bool addingAssetsAllowed
+        bool addingAssetsAllowed,
+        string calldata _message
     ) public payable returns(Capsule memory) {
         require(_distributionDate > block.timestamp, "Distribution Date must be in future");
         require(_tokens.length == _values.length, "Tokens and Values must be same length");
@@ -58,10 +60,10 @@ contract CryptoCapsule is Ownable{
             erc20Token.safeTransferFrom(msg.sender, address(this), _values[i]);
         }
 
-        uint256 capsuleId = capsules.length;
+        // uint256 capsuleId = capsules.length;
         capsules.push(
             Capsule(
-                capsuleId,
+                capsules.length,
                 msg.sender,
                 _beneficiary,
                 _distributionDate,
@@ -73,14 +75,15 @@ contract CryptoCapsule is Ownable{
                 msg.value,
                 _tokens,
                 _values,
-                addingAssetsAllowed
+                addingAssetsAllowed,
+                _message
             )
         );
 
-        sent[msg.sender].add(capsuleId);
-        received[_beneficiary].add(capsuleId);
-        emit CapsuleCreated(capsuleId);
-        return getCapsule(capsuleId);
+        sent[msg.sender].add(capsules.length - 1);
+        received[_beneficiary].add(capsules.length - 1);
+        emit CapsuleCreated(capsules.length - 1);
+        return getCapsule(capsules.length - 1);
     }
 
     function openCapsule(uint256 capsuleId) public {
@@ -186,6 +189,10 @@ contract CryptoCapsule is Ownable{
         return _capsules;
     }
 
+    function getMessage(uint256 capsuleId) public view returns(string memory _message) {
+        require(capsules.length > capsuleId, "Capsule does not exist");
+        return capsules[capsuleId].message;
+    }
 
     // Events
     event CapsuleOpened(uint256 capsuleId);

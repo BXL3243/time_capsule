@@ -45,7 +45,7 @@ const MainContainer = styled.div`
 const Main = styled.img`
   position: absolute;
   left: 7%;
-  width: 83%;
+  width: 70%;
   user-drag: none;
   user-select: none;
 `;
@@ -77,7 +77,7 @@ const tokenAnimationUp = keyframes`
         transform: translateY(0%) rotate(0deg);
     }
     50% {
-        transform: translateY(-40%) rotate(30deg);
+        transform: translateY(-40%) rotate(0deg);
     }
     100% {
         transform: translateY(0%) rotate(0deg);
@@ -99,7 +99,7 @@ const tokenAnimationDown = keyframes`
         transform: translateY(0%) rotate(0deg);
     }
     50% {
-        transform: translateY(15%) rotate(-10deg);
+        transform: translateY(15%) rotate(0deg);
     }
     100% {
         transform: translateY(0%) rotate(0deg);
@@ -108,9 +108,9 @@ const tokenAnimationDown = keyframes`
 
 const TokenBitcoin = styled.img`
   position: absolute;
-  top: 16%;
+  top: 46%;
   left: 30.5%;
-  width: 11%;
+  width: 26%;
   user-drag: none;
   user-select: none;
   animation: ${tokenAnimationDown} 11s ease-in-out 3s infinite;
@@ -118,9 +118,9 @@ const TokenBitcoin = styled.img`
 
 const TokenEther = styled.img`
   position: absolute;
-  top: 23.7%;
-  left: 44.7%;
-  width: 11%;
+  top: 40.7%;
+  left: 40.7%;
+  width: 30%;
   user-drag: none;
   user-select: none;
   animation: ${tokenAnimationUp} 22s ease-in-out 2s infinite;
@@ -128,9 +128,9 @@ const TokenEther = styled.img`
 
 const TokenTether = styled.img`
   position: absolute;
-  top: 11%;
-  left: 57.7%;
-  width: 11%;
+  top: 21%;
+  left: 47.7%;
+  width: 200%;
   user-drag: none;
   user-select: none;
   animation: ${tokenAnimationDown} 12s ease-in-out 1s infinite;
@@ -138,8 +138,8 @@ const TokenTether = styled.img`
 
 const TokenChainlink = styled.img`
   position: absolute;
-  top: 18.5%;
-  left: 71%;
+  top: 55.5%;
+  left: 56%;
   width: 11%;
   user-drag: none;
   user-select: none;
@@ -151,12 +151,14 @@ const FloatingCapsule = (): JSX.Element => {
     <StyledFloatingCapsule>
       <MainContainer>
         <Main src={capsuleLandingMain} alt="Open Capsule Image" />
-        <TokenCapsuleCoin
+        {/* <TokenCapsuleCoin
           src={capsuleLandingTokenCapsuleCoin}
           alt="Capsule Coin Token"
-        />
+        /> */}
         <TokenEther src={capsuleLandingTokenEther} alt="Ether Token" />
-        <TokenBitcoin
+        <TokenBitcoin src={capsuleLandingTokenEther} alt="Ether Token" />
+        <TokenChainlink src={capsuleLandingTokenEther} alt="Ether Token" />
+        {/* <TokenBitcoin
           src={capsuleLandingTokenBitcoin}
           alt="Wrapped Bitcoin Token"
         />
@@ -164,9 +166,9 @@ const FloatingCapsule = (): JSX.Element => {
         <TokenChainlink
           src={capsuleLandingTokenChainlink}
           alt="Chainlink Token"
-        />
+        /> */}
       </MainContainer>
-      <Shadow src={capsuleLandingShadow} />
+      {/* <Shadow src={capsuleLandingShadow} /> */}
     </StyledFloatingCapsule>
   );
 };

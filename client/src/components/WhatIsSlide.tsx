@@ -43,11 +43,12 @@ const WhatIsSlide = (): JSX.Element => {
       <Dots />
       <Gradient />
       <Note
-        header="What is Crypto Capsule?"
-        body="Crypto Capsule is a free tool for sending crypto to yourself or
+        header="What is Time Vault?"
+        body="Time Vault is a free tool for sending crypto and (or) message to yourself or
             someone else that can only be accessed at a specified time in the
-            future. When creating a Capsule you can choose several options to
-            customise when the Capsule opens and how the crypto is distributed."
+            future. When creating a Vault you can choose several options to
+            customise when the Vault opens and how the crypto is distributed
+            **Safe Storage, Immutability, Restricted Access**"
       />
     </StyledWhatIsSlide>
   );

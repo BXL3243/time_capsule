@@ -56,7 +56,7 @@ const Header = styled.h2`
   font-weight: 600;
   text-align: center;
   margin-bottom: 6rem;
-  transform: rotate(-3deg);
+  transform: rotate(0deg);
 
   @media (max-width: 600px) {
     font-size: 4rem;
@@ -136,7 +136,7 @@ const ComingSoonText = styled.div`
   font-weight: 500;
   width: 100%;
   text-align: center;
-  transform: rotate(-30deg);
+  transform: rotate(0deg);
 `;
 
 const SupportedNetworks = (): JSX.Element => {
