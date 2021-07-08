@@ -13,11 +13,11 @@ const buttons: ButtonType[][] = [
     //   label: "GitHub",
     //   link: "https://github.com/chase-manning/crypto-capsule",
     // },
-    // {
-    //   label: "Contract",
-    //   link:
-    //     "https://etherscan.io/address/0x5FbDB2315678afecb367f032d93F642f64180aa3",
-    // },
+    {
+      label: "Contract",
+      link:
+        "https://rinkeby.etherscan.io/address/0xC0eDd76E6cb2a48C9980f224CA72df33D501f733",
+    },
   ],
   [
     // {
