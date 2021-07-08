@@ -2,6 +2,7 @@
   "name": "crypto-capsule",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://bxl3243.github.io/time_sapsule/client",
   "dependencies": {
     "-": "^0.0.1",
     "@deptno/gtag": "^0.2.1",

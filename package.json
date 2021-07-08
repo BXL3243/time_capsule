@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chase-manning/crypto-capsule"
+    "url": "git+https://bxl3243.github.io/time_sapsule"
   },
   "keywords": [],
-  "author": "Chase Manning",
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chase-manning/crypto-capsule"
+    "url": "https://bxl3243.github.io/time_sapsule"
   },
-  "homepage": "https://cryptocapsule.io/",
+  "homepage": "https://bxl3243.github.io/time_sapsule",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.1",
